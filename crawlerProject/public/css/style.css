@@ -1,0 +1,32 @@
+.panel {
+  background-color: #696969;
+}
+
+#mark {
+  font-size: 30px;
+  font-weight: 800;
+  width: 40px;
+  height: 30px;
+  color: black;
+}
+
+#markFather {
+  font-size: 30px;
+  font-weight: 800;
+  color: #333333;
+}
+
+.header {
+  margin-top: 0;
+  height: 100px;
+}
+
+.bodyPage {
+  height: 500px;
+  background-color: #696969;
+}
+
+.go {
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+}

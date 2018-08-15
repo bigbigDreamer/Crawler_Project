@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>爬虫精选</title>
+    <script src="bootstrap/dist/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+            $(".start").click( () => {
+                   setTimeout(() => {
+                    console.log('先让我停顿一秒')
+                }, 1000);
+                  $.get("/ajax", (box) => {
+                    console.log(box.data.length);
+                    for (let i in box.data) {
+                        $('#data').append(`<li>${box.data[i]}</li>`);
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <div class="col-md-12 col-xs-12 col-sm-12 header">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p class="text-center" id="markFather" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-piggy-bank" id="mark" aria-hidden="true">
+                        </span>
+                        沐沐制作----必属精品
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <div class="jumbotron  bodyPage">
+                <h1>想自己亲身体验一番爬虫吗？</h1>
+                <p>但是需要你有一定的jQuery基础喔，下面开始尝试吧！</p>
+                <a href="/ddd">12212</a>
+                <br>
+                <br>
+                <p>
+                    <a class="btn btn-lg go" role="button" style="background-color: #B0C4DE "
+                       data-toggle="modal" data-target=".bs-form-modal-lg">(._.)To try</a>
+                </p>
+            </div>
+            <div class="modal fade bs-form-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">根据提示，输入jQuery选择器</h4>
+                        </div>
+                        <form action="/crawling" method="post">
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">URL</span>
+                                    <input type="text" class="form-control" placeholder="请输入以https开头的URL源"
+                                           aria-describedby="basic-addon1" name="url" data-toggle="tooltip"
+                                           data-placement="top" title="示例:https://xxxx" required>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon2">$selector</span>
+                                    <input type="text" class="form-control" placeholder="请输入以$(以内)的jQuery选择器"
+                                           aria-describedby="basic-addon2" name="selector" data-toggle="tooltip"
+                                           data-placement="top" title="示例:p,a,div...,不需要写$() " required>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">$Method</span>
+                                    <input type="text" class="form-control" placeholder="请输入以()结尾的选择器方法"
+                                           aria-describedby="basic-addon3" name="method" data-toggle="tooltip"
+                                           data-placement="top" title="示例:text(),val(),html()" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary start"  data-toggle="modal"
+                                        data-target=".bs-msg-modal-lg">开始爬取</button>
+                            </div>
+                        </form>
+                        <div class="modal fade bs-msg-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel2">爬取记录</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul id="data">
+
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
